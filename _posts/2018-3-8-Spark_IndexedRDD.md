@@ -10,9 +10,9 @@ IndexRDD的设计思路是：
 1. 按照Key的Hash值把数据保持到不同的Partition中
 2. 在每个Partition中根据Key建立索引，通过新建节点复用老节点的方式来实现数据的更新
 
-![](../../../images/indexed_rdd2.png)
+![](/images/indexed_rdd2.png)
 
-![](../../../images/indexed_rdd1.png)
+![](/images/indexed_rdd1.png)
 
 ### 接口
 IndexedRDD主要提供了三个接口：
@@ -256,10 +256,10 @@ class IndexedRDD[K: ClassTag, V: ClassTag](
 
 ### 性能
 插入的吞吐率，在Batch Size比较大的情况下，比较有优势。
-![](../../../images/indexed_rdd33.png)
+![](/images/indexed_rdd33.png)
 
 查询的速度是最快的，扫描和内存占用处于中间水平。
-![](../../../images/indexed_rdd44.png)
+![](/images/indexed_rdd44.png)
 
 ### References
 - [Spark-2356](https://issues.apache.org/jira/browse/SPARK-2365)

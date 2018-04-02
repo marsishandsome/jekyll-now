@@ -20,7 +20,7 @@ Yarn Client模式
 
 
 Spark利用AKKA位置透明的特性，使得这两种模式可以共用同一套代码。Spark on Yarn调用流图如下：
-![](../../../images/spark_on_yarn_arch.png)
+![](/images/spark_on_yarn_arch.png)
 
 
 ### Yarn-Cluster模式代码分析

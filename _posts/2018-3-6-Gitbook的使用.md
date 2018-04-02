@@ -38,11 +38,11 @@ npm install gitbook -g
 ### 2. 预览
 1: Gitbook Editor提供实时预览功能
 
-![](../../../images/gitbook-preview.png)
+![](/images/gitbook-preview.png)
 
 2: 启动Preview Server，通过浏览器访问http://localhost:8004
 
-![](../../../images/gitbook-start-server.png)
+![](/images/gitbook-start-server.png)
 
 ### 3. 导出
 1. site
