@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The Secret to Growing Your Engineering Career If You Don't Want to Manage
+category: 未分类
 ---
 
 - 构建工具或者抽象，使得你周围人的工作可以产生乘法效应。例如，Jeff Dean创造了Protocal Buffers, Map Reduce, BigTable, Spanner以及其他系统级别的基础设施，增加了Google其他工程师的产出。因此Google专门为他创造了高级研究员的职位。
