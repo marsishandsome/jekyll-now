@@ -1,0 +1,8 @@
+- name: Hadoop Security
+  url: /slides/gen/HadoopSecurity.html
+
+- name: Spark Memory Management
+  url: /slides/gen/SparkMemoryManagement.html
+
+- name: Spark2.0 and Spark API History
+  url: /slides/gen/Spark2.0andSparkAPIHistory.html
