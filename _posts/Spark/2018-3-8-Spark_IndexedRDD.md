@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Spark IndexedRDD Efficient Fine-Grained Updates for RDDs
+category: Spark
 ---
 由于Spark RDD的Immutable特性，如果想要更新RDD里面的数据，就要对RDD中的每个Partition进行一次transformation，生成一个新的RDD。而对于Streaming Aggregation以及Incremental Algorithm之类的算法，每次迭代都会更新少量数据，但是需要迭代非常多的次数，每一次对RDD的更新代价相对较大。
 

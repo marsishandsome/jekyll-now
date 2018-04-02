@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Spark on Yarn源码分析
+category: Spark
 ---
 阅读本篇需要Yarn的基础，强烈推荐Yarn入门文章: [YARN应用开发流程](http://my.oschina.net/u/1434348/blog/193374)。
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello SparkR
+category: Spark
 ---
 **如果需要运行在Yarn上，Yarn所有机器上需要安装R环境。**
 

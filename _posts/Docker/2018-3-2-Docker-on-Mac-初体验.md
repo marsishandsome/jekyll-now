@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Docker on Mac初体验
+category: Docker
 ---
 
 ## 在Docker中运行Bash

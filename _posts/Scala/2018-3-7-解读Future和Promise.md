@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 解读Future和Promise
+category: Scala
 ---
 Future和Promise的概念早在1977年就已经提出来了。
 
