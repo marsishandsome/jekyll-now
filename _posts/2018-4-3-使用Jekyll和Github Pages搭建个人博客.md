@@ -26,25 +26,25 @@ category: 未分类
 
 # Jekyll
 作为一款面向于个人博客和项目主页静态网页生成器，需要考虑以下几个问题：
-- 支持Markdown：写文章方便
-- 支持HTML，css和js：构建比较复杂的项目页面
-- 支持模板或者include语法：消除冗余代码
-- 支持日期、分类、标签和草稿功能：个人博客必备
-- 支持自定义页面：静态定制化页面
-- 支持静态资源：图片、PPT、PDF
-- 支持模板语言：构建动态页面，例如分类页面、标签页面
-- 支持插件：扩展功能，实现例如：Sitemap生成器、RSS生成器等
-- 提供的规则语法尽量简单规范，不能有太多自定义的隐藏规则
+1. 支持Markdown：写文章方便
+2. 支持HTML，css和js：构建比较复杂的项目页面
+3. 支持模板或者include语法：消除冗余代码
+4. 支持日期、分类、标签和草稿功能：个人博客必备
+5. 支持自定义页面：静态定制化页面
+6. 支持静态资源：图片、PPT、PDF
+7. 支持模板语言：构建动态页面，例如分类页面、标签页面
+8. 支持插件：扩展功能，实现例如：Sitemap生成器、RSS生成器等
+9. 提供的规则语法尽量简单规范，不能有太多自定义的隐藏规则
 
 我们来看一下Jekyll是怎么解决这些问题的：
 
-## 支持Markdown：写文章方便
+## 1) 支持Markdown：写文章方便
 Jekyll支持将Markdown编译成html
 
-## 支持HTML，css和js：构建比较复杂的项目页面
+## 2) 支持HTML，css和js：构建比较复杂的项目页面
 Jekyll支持html,css和js编写网页
 
-## 支持模板或者include语法：消除冗余代码
+## 3) 支持模板或者include语法：消除冗余代码
 Jekyll支持在html和markdown文件头部嵌入Front Matter，例如：
 
 blog.md
@@ -60,7 +60,7 @@ This is a blog.
 
 /\_layouts/post.html
 {% raw %}
-```
+```html
 <article class="post">
   <h1>{{ page.title }}</h1>
 
@@ -73,7 +73,7 @@ This is a blog.
 
 blog.md的内容最终会把嵌入到`content`，Jekyll通过这种方式实现冗余代码消除。
 
-## 支持日期、分类、标签和草稿功能：个人博客必备
+## 4) 支持日期、分类、标签和草稿功能：个人博客必备
 
 ### 日期
 Jekyll通过文件名表示文章日期，例如/\_posts/2018-4-3-HelloWorld.md，通过.date属性可以访问日期，例如
@@ -103,7 +103,9 @@ category: 未分类
 ```html
 {% for category in site.categories %}
 <h2>
-  <a href="{{ site.baseurl}}/category/{{ category.first }}.html">{{category.first}}（{{category.last.size}}）</a>
+  <a href="{{ site.baseurl}}/category/{{ category.first }}.html">
+    {{category.first}}（{{category.last.size}}）
+  </a>
 </h2>
 
 <ul class="posts">
@@ -127,7 +129,7 @@ category: 未分类
 |   |-- a-draft-post.md
 ```
 
-## 支持自定义页面：静态定制化页面
+## 5) 支持自定义页面：静态定制化页面
 用户可以在Jekyll预定义目录（/\_includes, /\_layouts/, /\_posts/, /\_site/）和文件（/\_config.yml, /index.html）以外添加任意的Markdown和HTML文件用来创建自定义页面，例如:
 ```
 .
@@ -136,7 +138,7 @@ category: 未分类
     └── contact.html  # => http://example.com/other/contact.html
 ```
 
-## 支持静态资源：图片、PPT、PDF
+## 6) 支持静态资源：图片、PPT、PDF
 用户可以在Jekyll预定义目录（/\_includes, /\_layouts/, /\_posts/, /\_site/）和文件（/\_config.yml, /index.html）以外添加任意的非Markdown和HTML文件的静态资源，并且支持目录嵌套，例如:
 ```
 .
@@ -145,7 +147,7 @@ category: 未分类
     └── test2.jpg  # => http://example.com/other/test2.jpg
 ```
 
-## 支持模板语言：构建动态页面，例如分类页面、标签页面
+## 7) 支持模板语言：构建动态页面，例如分类页面、标签页面
 Jekyll采用Liquid模板语言，下面的例子就是使用Liquid语言实现分类页面
 
 {% raw %}
@@ -154,7 +156,9 @@ Jekyll采用Liquid模板语言，下面的例子就是使用Liquid语言实现�
 {% for category in site.categories %}
 
 <h2>
-  <a href="{{ site.baseurl}}/category/{{ category.first }}.html">{{category.first}}（{{category.last.size}}）</a>
+  <a href="{{ site.baseurl}}/category/{{ category.first }}.html">
+    {{category.first}}（{{category.last.size}}）
+  </a>
 </h2>
 
 <ul class="posts">
@@ -171,7 +175,7 @@ Jekyll采用Liquid模板语言，下面的例子就是使用Liquid语言实现�
 ```
 {% endraw %}
 
-## 支持插件：扩展功能，实现例如：Sitemap生成器、RSS生成器等
+## 8) 支持插件：扩展功能，实现例如：Sitemap生成器、RSS生成器等
 在`_config.yml`配置文件中通过plugins或者gems配置插件
 ```
 gems:
