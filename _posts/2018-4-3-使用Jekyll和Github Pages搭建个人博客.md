@@ -3,7 +3,11 @@ layout: post
 title: 使用Jekyll和Github Pages搭建个人博客
 category: 未分类
 ---
-我的个人博客最早使用的是WordPress，当时也没觉得麻烦，申请了一台带有固定IP的机器，申请了域名，在机器上安装WordPress、MySQL以及WordPress各种插件基本上就搞定了。后来Github推出了Github Pages用来免费托管静态页面并提供*.github.io域名，非常适合用来托管个人小型博客，于是就可以用Markdown来写文章，然后通过自己写的脚本生成静态站点，push到Github进行版本管理，最后用Github Pages托管站点，这是我之前个人站点的[源代码](https://github.com/marsishandsome/marsishandsome.github.com)。用自己的脚本生成静态站点灵活度不大，后来发现可以用Jekyll取代，Jekyll是Github的co-founder Tom Preston-Werner用Ruby开发的一款开源的静态站点生成器，适合用于生成个博客和项目主页。
+我的个人博客最早使用的是WordPress，当时也没觉得麻烦，申请了一台带有固定IP的机器，申请了域名，在机器上安装WordPress、MySQL以及WordPress各种插件基本上就搞定了。
+
+后来Github推出了Github Pages用来免费托管静态页面并提供*.github.io域名，非常适合用来托管个人小型博客，于是就可以用Markdown来写文章，然后通过自己写的脚本生成静态站点，push到Github进行版本管理，最后用Github Pages托管站点，这是我之前个人站点的[源代码](https://github.com/marsishandsome/marsishandsome.github.com)。
+
+用自己的脚本生成静态站点灵活度不大，后来发现可以用Jekyll取代，Jekyll是Github的co-founder Tom Preston-Werner用Ruby开发的一款开源的静态站点生成器，适合用于生成个博客和项目主页。
 
 # 系统搭建
 1. fork https://github.com/barryclark/jekyll-now 并修改仓库名称
