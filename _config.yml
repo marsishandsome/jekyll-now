@@ -31,10 +31,19 @@ footer-links:
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
 
+# Gitalk
+gitalk:
+  enable: true    #是否开启Gitalk评论
+  clientID: ca765a0342ad75dce21e                            #生成的clientID
+  clientSecret: 89b668105d3a49e23ee31e3d0511237e0921718d    #生成的clientSecret
+  repo: marsishandsome.github.io    #仓库名称
+  owner: marsishandsome    #github用户名
+  admin: marsishandsome
+  distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
-disqus:
+disqus: abc
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: UA-72149435-1
