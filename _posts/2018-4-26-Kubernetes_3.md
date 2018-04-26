@@ -31,6 +31,17 @@ $ kubectl exec -it myzk-zookeeper-0 -- /opt/zookeeper/bin/zkCli.sh
 [zookeeper, foo]
 ```
 
+# 集群外部访问
+通过port-forward方式
+```
+$ kubectl port-forward myzk-zookeeper-0 2181:2181
+
+$ zkCli.sh
+
+[zk: localhost:2181(CONNECTED) 0] ls /
+[zookeeper, foo]
+```
+
 # Zookeeper在Kuberneters上的组件
 首先查看一下Zookeeper应用
 ```
