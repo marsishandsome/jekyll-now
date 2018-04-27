@@ -10,3 +10,7 @@ category: 未分类
 
 # Awesome
 - [Awesome Kubernetes](https://github.com/ramitsurana/awesome-kubernetes)
+- [Awesome Cloud Native](https://jimmysong.io/awesome-cloud-native/)
+
+# CNCF - Cloud Native Computing Foundation
+- [Cloud Native Computing Foundation](https://www.cncf.io/projects/)

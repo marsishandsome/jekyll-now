@@ -18,6 +18,11 @@ $ brew install kubernetes-helm
 通过helm的init命令可以在Kubernetes集群上安装Helm服务器Tiller，需要事先配置好kubectl
 ```
 $ helm init
+
+# 该命令会在集群内部部署一个tiller服务
+$ kubectl get pods --namespace=kube-system
+NAME                                    READY     STATUS    RESTARTS   AGE
+tiller-deploy-df4fdf55d-8fssp           1/1       Running   5          1d
 ```
 
 ## 3. 更新charts列表
@@ -200,7 +205,11 @@ $ helm rollback my-release 1
 
 ## 删除 Release
 ```
+# 删除release
 $ helm delete my-release
+
+# 删除数据
+$ helm delete --purge my-release
 ```
 
 ## repo 管理

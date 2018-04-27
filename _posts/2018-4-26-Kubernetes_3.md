@@ -10,7 +10,7 @@ category: 未分类
 $ helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
 
 # 安装zookeeper
-$ helm install --set resources.requests.memory=200Mi,servers=2 --name myzk incubator/zookeeper
+$ helm install --set resources.requests.memory=200Mi --name myzk incubator/zookeeper
 
 # 进入bash
 $ kubectl exec -it myzk-zookeeper-0 -- /bin/bash
@@ -50,13 +50,14 @@ $ kubectl get all -l app=zookeeper
 NAME                   READY     STATUS    RESTARTS   AGE
 pod/myzk-zookeeper-0   1/1       Running   0          2m
 pod/myzk-zookeeper-1   1/1       Running   0          1m
+pod/myzk-zookeeper-2   1/1       Running   0          1m
 
 NAME                              TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
 service/myzk-zookeeper            ClusterIP   10.107.169.140   <none>        2181/TCP            2m
 service/myzk-zookeeper-headless   ClusterIP   None             <none>        2888/TCP,3888/TCP   2m
 
 NAME                              DESIRED   CURRENT   AGE
-statefulset.apps/myzk-zookeeper   2         2         2m
+statefulset.apps/myzk-zookeeper   3         3         2m
 ```
 
 可以看到Kuberneters为Zookeeper创建了以下几个组件：
@@ -80,6 +81,7 @@ StatefulSet 是为了解决有状态服务的问题（对应 Deployments 和 Rep
 StatefulSet 中每个 Pod 的 DNS 格式为 statefulSetName-{0..N-1}.serviceName.namespace.svc.cluster.local，本例中两个NDS分别为：
 - myzk-zookeeper-0.myzk-zookeeper-headless.default.svc.cluster.local
 - myzk-zookeeper-1.myzk-zookeeper-headless.default.svc.cluster.local
+- myzk-zookeeper-2.myzk-zookeeper-headless.default.svc.cluster.local
 
 本例zookeeper的StatefulSet定义如下：
 ```
@@ -186,19 +188,21 @@ myzk-zookeeper   ClusterIP   10.107.169.140   <none>        2181/TCP   1h
 
 $ kubectl get statefulset myzk-zookeeper
 NAME             DESIRED   CURRENT   AGE
-myzk-zookeeper   2         2         1h
+myzk-zookeeper   3         3         1h
 
 # 根据 volumeClaimTemplates 自动创建 PVC
 $ kubectl get pvc
 NAME                       STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 datadir-myzk-zookeeper-0   Bound     pvc-88c86cb8-490b-11e8-a576-4a314017421a   5Gi        RWO            standard       1h
 datadir-myzk-zookeeper-1   Bound     pvc-97fc6850-490b-11e8-a576-4a314017421a   5Gi        RWO            standard       1h
+datadir-myzk-zookeeper-2   Bound     pvc-411ae439-4946-11e8-b67f-4a314017421a   5Gi        RWO            standard       1h
 
 # 查看创建的 Pod，他们都是有序的
 $ kubectl get pods -l app=zookeeper
 NAME               READY     STATUS    RESTARTS   AGE
 myzk-zookeeper-0   1/1       Running   0          1h
 myzk-zookeeper-1   1/1       Running   0          1h
+myzk-zookeeper-2   1/1       Running   0          1h
 
 # 使用 nslookup 查看这些 Pod 的 DNS
 $ kubectl run -i --tty --image busybox dns-test --restart=Never --rm /bin/sh
@@ -241,6 +245,7 @@ spec:
 本例采用的是Selectors的方式，生成的域名分别为：
 - myzk-zookeeper-0.myzk-zookeeper-headless.default.svc.cluster.local
 - myzk-zookeeper-1.myzk-zookeeper-headless.default.svc.cluster.local
+- myzk-zookeeper-2.myzk-zookeeper-headless.default.svc.cluster.local
 
 
 那么zookeeper的几个节点是如何互相发现的呢？
@@ -270,6 +275,8 @@ autopurge.snapRetainCount=3
 autopurge.purgeInteval=1
 server.1=myzk-zookeeper-0.myzk-zookeeper-headless.default.svc.cluster.local:2888:3888                                                                                   
 server.2=myzk-zookeeper-1.myzk-zookeeper-headless.default.svc.cluster.local:2888:3888
+
+server.3=myzk-zookeeper-2.myzk-zookeeper-headless.default.svc.cluster.local:2888:3888
 ```
 
 ## Client Service
