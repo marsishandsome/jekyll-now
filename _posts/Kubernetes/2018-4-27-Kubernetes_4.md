@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kubernetes系列4：Spark on Kubernetes
-category: 未分类
+category: Kubernetes
 ---
 
 Spark on Kubernetes有两种方案：

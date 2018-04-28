@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kubernetes系列1：使用Minikube在Kubernetes中运行应用
-category: 未分类
+category: Kubernetes
 ---
 
 本文主要介绍：

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kubernetes系列0：Kubernetes资料汇总
-category: 未分类
+category: Kubernetes
 ---
 
 # 中文

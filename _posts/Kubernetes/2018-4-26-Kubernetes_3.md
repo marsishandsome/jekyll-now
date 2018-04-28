@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kubernetes系列3：使用Helm在Kubernetes上部署Zookeeper
-category: 未分类
+category: Kubernetes
 ---
 
 # 安装步骤

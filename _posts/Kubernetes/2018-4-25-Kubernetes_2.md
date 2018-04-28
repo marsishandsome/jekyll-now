@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Kubernetes系列2：Kubernetes的应用管理器Helm
-category: 未分类
+category: Kubernetes
 ---
 
 如果把Kubernetes看做一个分布式操作系统，势必需要一个Kubernetes的应用管理器，类似于yum/apt/homebrew，Helm就是这么一款为Kubernetes打造的应用管理器。
