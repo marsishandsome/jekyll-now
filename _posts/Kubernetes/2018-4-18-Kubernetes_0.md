@@ -4,7 +4,7 @@ title: Kubernetes系列0：Kubernetes资料汇总
 category: Kubernetes
 ---
 
-# 中文
+# Handbook
 - [Kubernetes 指南](https://kubernetes.feisky.xyz/zh/) -- by Feisky
 - [Kubernetes Handbook](https://jimmysong.io/kubernetes-handbook/) -- by Jimmy Song
 
@@ -14,3 +14,6 @@ category: Kubernetes
 
 # CNCF - Cloud Native Computing Foundation
 - [Cloud Native Computing Foundation](https://www.cncf.io/projects/)
+
+# Blog
+- [Jimmy Song](https://jimmysong.io/)
