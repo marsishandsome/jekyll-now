@@ -3,9 +3,11 @@ layout: default
 ---
 
 <h1>书籍</h1>
-<ul class="posts">
+<ul class="posts books">
 {% for book in site.data.books %}
-  <li><a href="{{ book.url }}">{{ book.name }}</a></li>
+  <li>
+    <a href="{{ book.url }}"><img src="{{ book.image }}"></img></a>
+  </li>
 {% endfor %}
 </ul>
 

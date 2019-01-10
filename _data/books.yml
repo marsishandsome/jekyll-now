@@ -1,2 +1,3 @@
 - name: SparkSQL Internal
   url: http://marsishandsome.github.io/SparkSQL-Internal/
+  image: images/books/sparksql-internal.png
