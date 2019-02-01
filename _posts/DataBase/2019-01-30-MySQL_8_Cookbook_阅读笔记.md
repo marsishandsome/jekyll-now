@@ -99,15 +99,22 @@ mysql> ALTER TABLE employees ADD INDEX index_last_name(last_name);
 ```
 mysql> ALTER TABLE employees ALTER INDEX last_name INVISIBLE;
 ```
-
-## Descending index
 ## Analyzing slow queries using pt-query-digest
+
 ## Optimizing datatypes
+
 ## Removing duplicate and redundant indexes
+
 ## Checking index usage
+
 ## Controlling the query optimizer
+
 ## Using index hints
+
 ## Indexing for JSON using generated columns
+
 ## Using resource groups
+
 ## Using performance schema
+
 ## Using the sys schema
