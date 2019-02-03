@@ -6,6 +6,7 @@ layout: default
   <div class="title">{{ page.title }}</div>
 
   <div class="entry">
+    {% include toc.html html=content %}
     {{ content }}
   </div>
 
