@@ -1,15 +1,6 @@
 ---
-layout: default
+layout: index
 ---
-
-<h1>书籍</h1>
-<ul class="posts books">
-{% for book in site.data.books %}
-  <li>
-    <a href="{{ book.url }}"><img src="{{ book.image }}"></img></a>
-  </li>
-{% endfor %}
-</ul>
 
 <h1>文章</h1>
 <ul class="posts">
@@ -19,6 +10,15 @@ layout: default
       <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
+</ul>
+
+<h1>书籍</h1>
+<ul class="posts books">
+{% for book in site.data.books %}
+  <li>
+    <a href="{{ book.url }}"><img src="{{ book.image }}"></img></a>
+  </li>
+{% endfor %}
 </ul>
 
 <h1>Slides</h1>

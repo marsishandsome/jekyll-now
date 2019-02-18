@@ -2,13 +2,18 @@
 layout: default
 ---
 
-<article class="post">
-  <div class="title">{{ page.title }}</div>
+{% include site-nav.html title="文章" %}
 
-  <div class="entry">
-    {% include toc.html html=content %}
-    {{ content }}
+<div class="main-left">
+  <div class="hung-panel">
+    <nav id="toc" class="affix" data-spy="affix" data-toggle="toc">
+      {% include toc.html html=content id="toc-nav" %}
+    </nav>
   </div>
+</div>
+
+<div class="main-center">
+  {{ content }}
 
   <div class="date">
     Written on {{ page.date | date: "%B %e, %Y" }}
@@ -17,4 +22,17 @@ layout: default
   {% include gitalk.html %}
 
   {% include disqus.html %}
-</article>
+
+  <div class="footer">
+    <div class="container">
+      <footer class="footer">
+        {% include svg-icons.html %}
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $("#toc ul").addClass("nav");
+    $('body').scrollspy({ target: '#toc-nav' });
+</script>
