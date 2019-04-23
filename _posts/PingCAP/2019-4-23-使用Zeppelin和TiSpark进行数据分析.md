@@ -22,7 +22,7 @@ cd tispark-with-zeppelin-docker-compose
 ```
 
 # Step1: 导入tpch测试数据
-打开zeppelin web界面`http://127.0.0.1`，新建一个Notebook，并运行下面的命令将tpch测试数据导入到TiDB
+打开zeppelin web界面`http://127.0.0.1`，新建一个Notebook，并运行下面的命令将tpch测试数据导入到TiDB (%sh 表示执行引擎是/bin/sh)
 ```
 %sh
 bash /opt/tispark-tests/loaddata.sh
@@ -30,7 +30,7 @@ bash /opt/tispark-tests/loaddata.sh
 ![](../../images/2019-4-23-使用Zeppelin和TiSpark进行数据分析/tispark_zeppelin_01.png)
 
 # Step2: 获取TiSpark版本
-运行下面的语句获取TiSpark版本
+运行下面的语句获取TiSpark版本 (%spark表示执行引擎是spark)
 ```
 %spark
 sc.getConf.get("spark.sql.extensions")
@@ -50,7 +50,7 @@ spark.sql("select count(*) from lineitem").show
 
 
 # Step4: 运行tpch01 sql并作图
-运行下面的语句进行tpch01 query执行
+运行下面的语句进行tpch01 query执行 (%sql表示执行引擎是spark sql)
 ```
 %sql
 select
