@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Unix Shell基本命令学习
-category: Unix
+category: 未分类
 ---
 # sed
 Stream EDitor
