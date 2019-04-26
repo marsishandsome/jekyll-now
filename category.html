@@ -5,7 +5,7 @@ layout: catalog
 {% for category in site.categories %}
 
 <h2>
-  <a href="{{ site.baseurl}}/category/{{ category.first }}.html">{{category.first}}（{{category.last.size}}）</a>
+  {{category.first}}（{{category.last.size}})
 </h2>
 
 <ul class="posts">
