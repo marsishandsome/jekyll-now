@@ -13,30 +13,30 @@ GitBook是一款开源的电子书制作软件，基于Node.js，让你能够使
 
 # Windows安装步骤
 
-### 1.安装Node.js
+## 1.安装Node.js
 [下载Node.js](http://nodejs.org/download/)
 
-### 2. 安装Gitbook
+## 2. 安装Gitbook
 ```bash
 npm install gitbook -g
 ```
 
 把```C:\Users\username\AppData\Roaming\npm```加入到系统环境变量中
 
-### 3. 安装Calibre
+## 3. 安装Calibre
 [下载Calibre](http://www.calibre-ebook.com/)
 
-### 4. 安装Gitbook Editor
+## 4. 安装Gitbook Editor
 [下载Gitbook Editor](https://github.com/GitbookIO/editor/releases)
 
 [Gitbook Editor Github](https://github.com/GitbookIO/editor/releases)
 
 # 使用GitBook
 
-### 1.编辑
+## 1.编辑
 使用Gitbook Editor新建Book，用Markdown编辑
 
-### 2. 预览
+## 2. 预览
 1: Gitbook Editor提供实时预览功能
 
 ![](/images/gitbook-preview.png)
@@ -45,7 +45,7 @@ npm install gitbook -g
 
 ![](/images/gitbook-start-server.png)
 
-### 3. 导出
+## 3. 导出
 1. site
 ```bash
 gitbook build ./repository -f site --output=./outputFolder

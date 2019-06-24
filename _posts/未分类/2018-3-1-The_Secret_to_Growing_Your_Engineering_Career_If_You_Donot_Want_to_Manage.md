@@ -13,5 +13,5 @@ category: 未分类
 - 你在为公司创建品牌的过程中起到重要作用。
 
 
-## 参考
+# 参考
 - [The Secret to Growing Your Engineering Career If You Don't Want to Manage](http://www.theeffectiveengineer.com/blog/secret-to-growing-software-engineering-career?utm_source=wanqu.co&utm_campaign=Wanqu+Daily&utm_medium=website)

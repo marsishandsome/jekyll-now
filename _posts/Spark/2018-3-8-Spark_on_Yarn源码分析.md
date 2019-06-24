@@ -8,7 +8,7 @@ category: Spark
 本篇代码基于Spark-1.3.0。
 
 
-### Spark on Yarn调用流图
+# Spark on Yarn调用流图
 Spark on Yarn支持两种部署模式：Cluster VS Client。
 两种模式最大的区别在于Spark Driver的运行位置，Cluster模式下Driver运行在Application Master中，而Client模式下Driver运行在本地。
 
@@ -24,7 +24,7 @@ Spark利用AKKA位置透明的特性，使得这两种模式可以共用同一�
 ![](/images/spark_on_yarn_arch.png)
 
 
-### Yarn-Cluster模式代码分析
+# Yarn-Cluster模式代码分析
 1: Client
 SparkSubmit是Spark程序的入口
 ```scala
@@ -488,7 +488,7 @@ if (sparkConf.getBoolean("spark.shuffle.service.enabled", false)) {
 nmClient.startContainer(container, ctx)
 ```
 
-### Yarn-Client模式代码分析
+# Yarn-Client模式代码分析
 7: 触发提交Application的过程
 
 用户新建SparkContext
@@ -608,7 +608,7 @@ sparkConf.set("spark.driver.port", driverPort.toString)
 runAMActor(driverHost, driverPort.toString, isClusterMode = false)
 ```
 
-### Data Locality
+# Data Locality
 使用preferredNodeLocationData，可以让Yarn分配距离数据较近的Container
 ```scala
 val locData = InputFormatInfo.computePreferredLocations(
@@ -616,13 +616,13 @@ val locData = InputFormatInfo.computePreferredLocations(
 val sc = new SparkContext(conf, locData)
 ```
 
-### Spark on Yarn存在的问题
+# Spark on Yarn存在的问题
 1. Spark无法动态增加/减少资源 [YARN-1197](https://issues.apache.org/jira/browse/YARN-1197)
 2. Spark日志存储问题 [YARN-321](https://issues.apache.org/jira/browse/YARN-321)
 3. YARN允许spark作业为driver和executor设置需要的cpu和内存资源量，但是到底设置多少最为合适，这显然不好确定。因此，最好能够提供一个资源获取工具，可以查看spark作业实际占用的内存和cpu资源量，以便修正用户的资源参数。
 
 
-### References
+# References
 - [YARN应用开发流程](http://my.oschina.net/u/1434348/blog/193374)
 - [Spark on Yarn: a deep dive](http://www.chinastor.org/upload/2014-07/14070710043699.pdf) - Sandy Ryza @Cloudera
 - [spark on yarn的技术挑战](http://dongxicheng.org/framework-on-yarn/spark-on-yarn-challenge/) - 董的博客

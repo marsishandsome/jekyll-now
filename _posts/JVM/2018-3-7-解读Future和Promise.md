@@ -8,12 +8,12 @@ Future和Promise的概念早在1977年就已经提出来了。
 Future是一个只读的占位符，它的值在未来某个时刻会被计算出来；
 Promise是一个可写的容器，可以设置Future的值  。
 
-### Future in Java
+# Future in Java
 Future最早出现在Java5中，这个Future功能非常简单，只能通过轮询的方式进行查询；
 Google Guava中实现了ListenableFuture，提供addListener和addCallback的方式进行回调；
 Java8中实现了CompletableFuture，提供了比较完整的Future支持。
 
-##### Java5: Future
+## Java5: Future
 - [api](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
 
 Java5中的Future只提供了主动查询的接口，功能非常弱。
@@ -26,7 +26,7 @@ interface Future<V> {
 }
 ```
 
-##### Guava: ListenableFuture
+## Guava: ListenableFuture
 - [guava](https://code.google.com/p/guava-libraries/wiki/ListenableFutureExplained)
 - [api](http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/util/concurrent/ListenableFuture.html)
 
@@ -63,7 +63,7 @@ class SettableFuture<V> implements ListenableFuture<V> {
 ```
 
 
-##### Java8: CompletableFuture
+## Java8: CompletableFuture
 - [jdk1.8](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
 
 Java8中新增了CompletableFuture，是Future和Promise的结合：
@@ -91,7 +91,7 @@ class CompletableFuture<T> {
 }
 ```
 
-### Future In Scala
+# Future In Scala
 - [future api](http://www.scala-lang.org/api/current/#scala.concurrent.Future)
 - [promise api](http://www.scala-lang.org/api/current/#scala.concurrent.Promise)
 - [Futures and Promises](http://docs.scala-lang.org/overviews/core/futures.html)
@@ -130,7 +130,7 @@ trait Promise {
 }
 ```
 
-### Future In C++11
+# Future In C++11
 - [future api](http://en.cppreference.com/w/cpp/thread/future)
 - [promise api](http://en.cppreference.com/w/cpp/thread/promise)
 
@@ -156,7 +156,7 @@ template< class R > class promise {
 }
 ```
 
-### References
+# References
 - [Wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises)
 - [深入浅出Future Pattern](http://www.wuzesheng.com/?p=2485)
 - [Java8 中的纯异步编程](http://www.tuicool.com/articles/ABVV3q)

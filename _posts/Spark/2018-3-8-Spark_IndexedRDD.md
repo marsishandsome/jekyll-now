@@ -15,7 +15,7 @@ IndexRDD的设计思路是：
 
 ![](/images/indexed_rdd1.png)
 
-### 接口
+# 接口
 IndexedRDD主要提供了三个接口：
 1. multiget: 获取一组Key的Value
 2. multiput: 更新一组Key的Value
@@ -50,7 +50,7 @@ object IndexedRDD {
 }
 ```
 
-### 使用
+# 使用
 下面这个例子来自IndexedRDD的Github页面，展示IndexedRDD的使用例子。
 
 ```scala
@@ -87,7 +87,7 @@ resolvers += "Spark Packages Repo" at "http://dl.bintray.com/spark-packages/mave
 libraryDependencies += "amplab" % "spark-indexedrdd" % "0.1"
 ```
 
-### Persistent Adaptive Radix Trees (PART)
+# Persistent Adaptive Radix Trees (PART)
 IndexedRDD的每个Partition的存储用的是Persisten Adaptive Radix Trees。它的主要特点有：
 1. 基于索引的内存存储结构
 2. 针对CPU Cache进行优化(相对B-Tree)
@@ -127,10 +127,10 @@ public class ArtTree extends ChildPtr implements Serializable {
 }
 ```
 
-### 实现分析
+# 实现分析
 IndexedRDD的实现相当简洁，只有800LOC。
 
-##### KeySerializer.scala
+## KeySerializer.scala
 定义了如何把Key序列化成Byte Array，以及反序列化的方法
 ```scala
 trait KeySerializer[K] extends Serializable {
@@ -144,7 +144,7 @@ class LongSerializer extends KeySerializer[Long]
 class StringSerializer extends KeySerializer[String]
 ```
 
-##### IndexedRDDPartition.scala
+## IndexedRDDPartition.scala
 定义了Partition的接口
 ```scala
 private[indexedrdd] abstract class IndexedRDDPartition[K, V] extends Serializable {
@@ -161,7 +161,7 @@ private[indexedrdd] abstract class IndexedRDDPartition[K, V] extends Serializabl
 }
 ```
 
-##### PARTPartition.scala
+## PARTPartition.scala
 Partion的PART实现，其中使用到了最重要的数据结构，即map: ArtTree。
 ```scala
 private[indexedrdd] class PARTPartition[K, V]
@@ -200,7 +200,7 @@ private[indexedrdd] class PARTPartition[K, V]
 }
 ```
 
-##### IndexedRDD.scala
+## IndexedRDD.scala
 基于PARTPartition，IndexedRDD的实现就非常简单：
 ```scala
 class IndexedRDD[K: ClassTag, V: ClassTag](
@@ -255,14 +255,14 @@ class IndexedRDD[K: ClassTag, V: ClassTag](
 }
 ```
 
-### 性能
+# 性能
 插入的吞吐率，在Batch Size比较大的情况下，比较有优势。
 ![](/images/indexed_rdd33.png)
 
 查询的速度是最快的，扫描和内存占用处于中间水平。
 ![](/images/indexed_rdd44.png)
 
-### References
+# References
 - [Spark-2356](https://issues.apache.org/jira/browse/SPARK-2365)
 - [IndexedRDD Design Document](https://issues.apache.org/jira/secure/attachment/12656374/2014-07-07-IndexedRDD-design-review.pdf)
 - [Spark Summit 2015 Slide](http://www.slideshare.net/SparkSummit/ankur-dave)
