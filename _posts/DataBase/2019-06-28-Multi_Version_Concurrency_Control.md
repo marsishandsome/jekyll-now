@@ -237,6 +237,7 @@ MVTO需要对每条记录额外存储以下几个信息：
 4. end-ts：如果该条记录是最新的，则end-ts=INF；否则ent-ts=下一个版本的begin-ts
 
 MVTO的特点：
+- Use the transactions’ identifiers (Tid) to precompute their serialization order (使用事务ID预先计算串行顺序)
 - Use a read-ts field in the header to keep track of the timestamp of the last transaction that read it （使用read-ts记录最近读取该条数据的事务）
 - Transaction is allowed to read version if the lock is unset and its Tid is between begin-ts and end-ts （事务允许读的条件：记录没有被加锁  && 事务id介于begin-ts和end-ts之间）
 - For writes, transaction creates a new version if no other transaction holds lock and Tid is greater than read-ts （事务允许写的条件：记录没有被加锁 && 事务id大于read-ts）
