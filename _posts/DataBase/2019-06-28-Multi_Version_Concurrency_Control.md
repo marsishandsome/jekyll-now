@@ -3,9 +3,11 @@ layout: post
 title: Multi Version Concurrency Control
 category: DataBase
 ---
-MVCC是目前大部分主流数据库实现并发控制的方法，本篇主要介绍一下数据库解决并发控制问题的发展历史，从最开始的`Two Phase Locking (2PL)`到`Basic Timestamp Ordering (Basic T/O)`，再到`Optimistic Concurrency Control(OCC)`。引入了`Multi Version`的概念后，又在原来的基础上产生了`Multi Version Two-phase Locking (MV2PL)`、`Multi Version Timestamp Ordering (MVTO)`和`Multi Version Optimistic Concurrency Control (MVOCC)`。
-
-本篇涉及的都是单机版的数据库实现，后续会再讨论如果将MVCC和分布式数据库结合。
+MVCC是目前大部分主流数据库实现并发控制的方法，本篇主要介绍一下数据库解决并发控制问题的发展历史，其中会涉及到
+1. 用锁的方式来解决并发冲突的`Two Phase Locking (2PL)`
+2. 基于时间戳顺序的`Basic Timestamp Ordering (Basic T/O)`
+3. 基于乐观模型的`Optimistic Currency Control (OCC)`
+4. 引入多版本控制后产生的`Multi Version Two-phase Locking (MV2PL)`、`Multi Version Timestamp Ordering (MVTO)`和`Multi Version Optimistic Concurrency Control (MVOCC)`
 
 # 事务冲突类型
 两个事务并发，什么情况下会冲突?
@@ -67,7 +69,7 @@ Timestamp Ordering是一种乐观锁模式，假设事务冲突比较少，因�
 ## Basic Timestamp Ordering Protocol
 Basic T/O使用Timestamp来决定事务的先后顺序。
 
-> Basic T/O Protocol
+>
 - Every transaction is assigned a unique timestamp when they arrive in the system.
 - The DBMS maintains separate timestamps in each tuple’s header of the last transaction that read that tuple or wrote to it.
 - Each transaction check for conflicts on each read/write by comparing their timestamp with the timestamp of the tuple they are accessing.
@@ -216,15 +218,15 @@ MVTO的特点：
 
 事务start流程：
 ```
-Tid = genreate next timestamp
+Tstart = genreate next timestamp
 ```
 
 read流程：
 ```
-if (find Ax satisfy begin-ts(Ax) <= Tid < end-ts(Ax))
+if (find Ax satisfy begin-ts(Ax) <= Tstart < end-ts(Ax))
   if (txn-id(Ax) == 0)
     execute transaction
-    set read-ts(Ax) to max{read-ts(Ax), Tid}
+    set read-ts(Ax) to max{read-ts(Ax), Tstart}
   else
     reject read request and abort corresponding transaction
 else
@@ -234,13 +236,13 @@ else
 write流程：
 ```
 if (find Bx satisfy end-ts(Bx) == INF)
-  if (txn-id(Bx) == 0 and Tid > read-ts(Bx))
+  if (txn-id(Bx) == 0 and Tstart > read-ts(Bx))
     execute transaction
-    txn-id(Bx) = Tid
+    txn-id(Bx) = Tstart
     new Bx+1
-    txn-id(Bx+1) = Tid
+    txn-id(Bx+1) = Tstart
     read-ts(Bx+1) = 0
-    set read-ts(Ax) to max{read-ts(Ax), Tid}
+    set read-ts(Ax) to max{read-ts(Ax), Tstart}
     add Bx+1 to WriteSet
   else
     reject write request and abort corresponding transaction
@@ -251,9 +253,9 @@ else
 commit流程
 ```
 for Ix+1 in WriteSet
-  begin-ts(Ix+1) = Tid
+  begin-ts(Ix+1) = Tstart
   end-ts(Ix+1) = INF
-  end-ts(Ix) = Tid
+  end-ts(Ix) = Tstart
   txn-id(Ix) = 0
   txn-id(Ix+1) = 0
 ```
@@ -421,7 +423,7 @@ MVTO如何解决读写冲突：
 # Timeline of MVCC
 ![](../../images/2019-06-28-Multi_Version_Concurrency_Control/timeline.png)
 
-# 常见DBMS使用的并发控制协议
+# 常见数据使用的并发控制协议
 
 | 数据库   | 并发控制协议 |
 | -------- | ------------ |
