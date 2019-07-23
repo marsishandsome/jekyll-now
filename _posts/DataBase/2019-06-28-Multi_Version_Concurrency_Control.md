@@ -99,7 +99,7 @@ else
 write流程：
 ```
 If TS < R-ts(x) or TS < W-ts(x) then
-  reject write request
+  reject write request and abort corresponding transaction
 else
   execute transaction
   Set W-ts(x) to TS.
@@ -166,7 +166,7 @@ if(validate success)
   execute transaction
   apply modification from private workspace to DBMS
 else
-  reject and abort
+  reject and abort corresponding transaction
 ```
 
 回滚流程：
@@ -300,7 +300,7 @@ if txn-id(Ax) == 0
   add Ax to Read Set
   return Ax
 else
-  wait and retry or abort
+  reject read request and abort corresponding transaction
 ```
 
 write流程：
@@ -312,7 +312,7 @@ if txn-id(Bx) == 0
   set txn-id(Bx+1) = Tstart
   add Bx to Write Set
 else
-  wait and retry or abort
+  reject write request and abort corresponding transaction
 ```
 
 commit流程：
@@ -320,7 +320,7 @@ commit流程：
 Tcommit = generate next timestamp
 for all Rx in Read Set
   if Rx is updated in committed transaction
-    abort transaction
+    reject and abort corresponding transaction
 for all Wx in Write Set
   set begin-ts(Wx+1) = Tcommit
   set end-ts(Wx+1) = INF
@@ -366,7 +366,7 @@ if txn-id(Ax) == 0
   execute transaction
   return Ax
 else
-  wait and retry or abort
+  reject read request and abort corresponding transaction
 ```
 
 write流程：
@@ -378,7 +378,7 @@ if txn-id(Bx) == 0 && read-cnt(Bx) == 0
   set txn-id(Bx+1) = Tstart
   add Bx to Write Set
 else
-  wait and retry or abort
+  reject write request and abort corresponding transaction
 ```
 
 commit流程：
