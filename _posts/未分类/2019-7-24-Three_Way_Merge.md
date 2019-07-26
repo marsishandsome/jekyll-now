@@ -40,9 +40,11 @@ A
 
 对于第2个问题：既然人可以成功解决冲突，为啥git不能自动帮我解决呢？这就涉及到git的merge算法。
 
-git merge文件是以行为单位进行一行一行进行合并的，但是有些时候并不是两行内容不一样git就会报冲突，因为git会帮我们自动帮我们进行取舍，分析出那个结果才是我们所期望的，如果git都无法进行取舍时候才会报冲突，这个时候才需要我们进行人工干预。那git是如何帮我们进行merge操作的呢?
+git merge文件是以行为单位进行一行一行进行合并的，但是有些时候并不是两行内容不一样git就会报冲突，因为git会帮我们自动进行取舍，分析出哪个结果才是我们所期望的，如果git都无法进行取舍的时候才会报冲突，这个时候才需要我们进行人工干预。那git是如何帮我们进行merge操作的呢?
 
 # Two Way Merging
+在介绍git merge算法前，先来看一个比较简单的算法：`Two Way Merging`。
+
 假设你和另外一个人同时修改了一个文件，这时第三个人看到了这两个文件，如下图：
 
 ![](../../images/2019-7-24-Three_Way_Merge/two-way.png)
@@ -58,7 +60,7 @@ git merge文件是以行为单位进行一行一行进行合并的，但是有�
 因此Two Way Merging不能解决同时修改同一个文件的冲突，只能发现冲突，需要手动解决。
 
 # Three Way Merging
-如果增加一个信息，TA知道你们两修改前公共的`Base`版本呢？
+如果增加一个信息，TA知道你们两修改前公共的`Base`版本(`Yours`和`Mine`修改前的版本)呢？
 
 ![](../../images/2019-7-24-Three_Way_Merge/three-way.png)
 
@@ -89,7 +91,15 @@ git merge文件是以行为单位进行一行一行进行合并的，但是有�
 # 使用Three Way Merging进行merge
 我们来看下git是如何使用Three Way Merging来进行`git merge`操作的。
 
-假设我们有2个branch：
+先来看下`git merge`在官网的定义：
+
+```
+git-merge - Join two or more development histories together
+```
+
+即把两个或两个以上的开发历史进行合并。
+
+这样讲比较抽象，来看一个简单的例子，假设我们有2个branch：
 - main：master branch
 - task001：我们正在开发的branch
 
@@ -140,7 +150,13 @@ $ git merge task001
 2. 然后让这个虚拟节点作为`Base`
 
 # 使用Three Way Merging进行cherry-pick
-`git cherry-pick`其实也是使用Three Way Merging，其中：
+cherry-pick在官网的定义如下：
+
+```
+git-cherry-pick - Apply the changes introduced by some existing commits
+```
+
+即把已经有的commit apply到其他分支，`git cherry-pick`其实也是使用Three Way Merging，其中：
 1. `Mine` = 执行`cherry-pick`时所在的branch的HEAD
 2. `Yours` = 被`cherry-pick`的那个commit
 3. `Base` = 被`cherry-pick`的那个commit的前一个commit
@@ -168,7 +184,12 @@ A
 - `Base` = `D`
 
 # 使用Three Way Merging进行rebase
-`git rebase`的过程可以看做是不断的做`git cherry-pick`，举个例子：
+rebase官方定义如下：
+```
+git-rebase - Reapply commits on top of another base tip
+```
+
+即使用其他分支作为基础，重新apply当前分支所有的commit，`git rebase`的过程可以看做是不断的做`git cherry-pick`，举个例子：
 
 ```
 E <-- master
