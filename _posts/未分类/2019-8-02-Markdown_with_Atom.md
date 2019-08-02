@@ -73,7 +73,7 @@ _
 ![](https://github.com/susisu/markdown-table-editor/wiki/images/demo.gif)
 
 # atom-markclip
-[主页](https://github.com/csbun/atom-markclip)
+[atom-markclip主页](https://github.com/csbun/atom-markclip)
 
 如果说表格是markdown第一大难题，那么本地图片无疑是第二大难题，直到安装了atom-markclip插件。
 
