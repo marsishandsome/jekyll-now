@@ -53,6 +53,9 @@ $ docker rmi $(docker images -q -f dangling=true)
 # 在容器中运行命令
 $ docker exec -ti container_name command
 
+# 在容器中运行bash + 自适应屏幕宽度
+$ docker exec -ti -e LINES=$(tput lines) -e COLUMNS=$(tput cols) container_name /bin/bash
+
 # 查看容器日志
 $ docker logs -ft container_name
 
